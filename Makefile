@@ -1,4 +1,6 @@
 runapp:
-	uvicorn main:app --reload
+	uvicorn src.main:app --reload
 testapp:
 	pytest
+fmt:
+	black ./
