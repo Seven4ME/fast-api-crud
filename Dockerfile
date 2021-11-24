@@ -1,10 +1,18 @@
-FROM python:3.9 as requirements-stage
-WORKDIR /tmp
+FROM python:3.8-slim
+
+RUN apt-get update && \
+    apt-get -y install gcc mono-mcs && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN pip install poetry
-COPY pyproject.toml ./poetry.lock* /tmp/
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
-FROM python:3.9
 WORKDIR /code
-COPY --from=requirements-stage /tmp/requirements.txt /code/requirements.txt
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
-COPY src /code/src
+COPY poetry.lock pyproject.toml /code/
+RUN poetry config virtualenvs.create false \
+  && poetry install --no-interaction --no-ansi
+
+RUN useradd -ms /bin/bash docker_user
+USER docker_user
+
+WORKDIR /code
+COPY --chown=docker_user src ./src
+

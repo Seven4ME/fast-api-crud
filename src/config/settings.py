@@ -4,7 +4,7 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
-    api_prefix: str = '/api/v1'
+    api_prefix: str = "/api/v1"
 
 
 class TestSettings(Settings):

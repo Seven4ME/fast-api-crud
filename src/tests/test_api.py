@@ -1,13 +1,10 @@
 import http
 
 import pytest
+from httpx import AsyncClient
 
 from src.config.settings import TestSettings
 from src.main import app
-from fastapi.testclient import TestClient
-from httpx import AsyncClient
-
-client = TestClient(app)
 
 
 @pytest.mark.anyio

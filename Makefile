@@ -4,3 +4,4 @@ testapp:
 	pytest
 fmt:
 	black ./
+	isort ./
