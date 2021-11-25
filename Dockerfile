@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y curl pip && curl -sSL https://raw.githu
  POETRY_HOME=/opt/poetry python3 && \
  cd /usr/local/bin && \
  ln -s /opt/poetry/bin/poetry && \
- poetry config virtualenvs.create false && apt-get autoremove -y curl pip
+ poetry config virtualenvs.create false && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /code
 
