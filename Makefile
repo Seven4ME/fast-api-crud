@@ -5,3 +5,5 @@ testapp:
 fmt:
 	black ./
 	isort ./
+build:
+	make fmt && docker-compose build && docker-compose up -d

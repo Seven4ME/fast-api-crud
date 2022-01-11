@@ -5,6 +5,10 @@ from pydantic import BaseSettings
 
 class Settings(BaseSettings):
     api_prefix: str = "/api/v1"
+    films_prefix: str = "/films"
+    actors_prefix: str = "/actors"
+    ELASTIC_HOST: str = "es-container"
+    ELASTIC_PORT: int = 9200
 
 
 class TestSettings(Settings):
